@@ -43,76 +43,104 @@ class _HomeScreenState extends State<HomeScreen> {
     ];
 
     final List icons = [
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
-      CupertinoIcons.book_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
+      CupertinoIcons.search_circle,
     ];
 
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.lightBlueAccent,
       drawer: const MenuDrawer(),
       appBar: const BaseAppBar(),
       body: Container(
         decoration: const BoxDecoration(
-            image: DecorationImage(
-          image: NetworkImage(
-              "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.freeiconspng.com%2Fuploads%2Fworld-map-png-5.png&f=1&nofb=1"),
-          alignment: Alignment.bottomCenter,
-        )),
+          image: DecorationImage(
+            image: NetworkImage(
+                "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.freeiconspng.com%2Fuploads%2Fworld-map-png-5.png&f=1&nofb=1"),
+            alignment: Alignment.bottomCenter,
+          ),
+          // gradient: LinearGradient(
+          //   begin: Alignment.topRight,
+          //   end: Alignment.bottomLeft,
+          //   stops: const [0.1, 0.5, 0.7, 0.9],
+          //   colors: [
+          //     Colors.lightBlueAccent,
+          //     Colors.blue[100]!,
+          //     Colors.blue[200]!,
+          //     Colors.blue,
+          //   ],
+          //),
+        ),
         child: ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: titles.length,
-          shrinkWrap: true,
+          itemCount: titles
+              .length, //? wrap the scrollable physics according to items count
+          shrinkWrap: true, //!
           itemBuilder: (BuildContext context, int index) {
-            return ListTile(
-              title: Text(
-                titles[index],
-                style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
-                  fontSize: 20.0,
-                ),
-              ),
-              subtitle: Text(
-                subTitle[index].toString(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white70,
-                  fontSize: 16.0,
-                ),
-              ),
-              leading: CircleAvatar(
-                  backgroundColor: Colors.blueAccent,
-                  radius: 20,
-                  child: Icon(
-                    icons[index],
+            return Container(
+              margin: const EdgeInsets.only(
+                  left: 5.0, right: 5.0, top: 5.0),
+              decoration: BoxDecoration(
+                  color: Colors.blueAccent.withOpacity(0.8),
+                  borderRadius: BorderRadius.circular(10)),
+              child: ListTile(
+                tileColor: Colors.black,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                title: Text(
+                  titles[index],
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
                     color: Colors.white,
-                    size: 30,
-                  )),
-              onTap: () async {
-                // Navigator.pop(context);
-                // if (index == 0) {
-                //   // nextScreen(context, BookmarkPage());
-                // } else if (index == 1) {
-                //   // nextScreenPopup(context, VideoArticles());
-                // } else if (index == 2) {
-                //   // nextScreenPopup(context, QuectionView());
-                // } else if (index == 4) {
-                //   // await launch(
+                    fontSize: 20.0,
+                  ),
+                ),
+                subtitle: Text(
+                  subTitle[index].toString(),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white70,
+                    fontSize: 16.0,
+                  ),
+                ),
+                leading: CircleAvatar(
+                    backgroundColor: Colors.blueAccent,
+                    radius: 20,
+                    child: Icon(
+                      icons[index],
+                      color: Colors.white,
+                      size: 30,
+                    )),
+                onTap: () async {
+                  // ignore: todo
+                  //TODO: change to push
 
-                // }
-              },
+                  // Navigator.pop(context);
+                  // if (index == 0) {
+                  //   // nextScreen(context, BookmarkPage());
+                  // } else if (index == 1) {
+                  //   // nextScreenPopup(context, VideoArticles());
+                  // } else if (index == 2) {
+                  //   // nextScreenPopup(context, QuectionView());
+                  // } else if (index == 4) {
+                  //   // await launch(
+
+                  // }
+                },
+                
+              ),
             );
+            
           },
         ),
       ),

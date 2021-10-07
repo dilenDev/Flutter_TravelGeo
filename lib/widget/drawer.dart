@@ -44,13 +44,12 @@ class _MenuDrawerState extends State<MenuDrawer> {
                 ),
               ),
               padding: const EdgeInsets.all(15),
-              height: 200,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    height: 120,
-                    width: 120,
+                    height: 110,
+                    width: 110,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage("assets/images/logo.png"),
@@ -72,62 +71,65 @@ class _MenuDrawerState extends State<MenuDrawer> {
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: titles.length,
-              padding: EdgeInsets.only(bottom: 50),
+              padding: const EdgeInsets.only(bottom: 50),
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  horizontalTitleGap: 10,
-                  minVerticalPadding: 20,
-                  tileColor: Colors.grey.shade200,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                  title: Text(
-                    titles[index],
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black54,
-                      fontSize: 20.0,
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 5.0, right: 5.0),
+                  child: ListTile(
+                    horizontalTitleGap: 10,
+                    minVerticalPadding: 20,
+                    tileColor: Colors.grey.shade200,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(25.0),
+                    )),
+                    title: Text(
+                      titles[index],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.black54,
+                        fontSize: 20.0,
+                        // fontStyle: FontStyle.italic,
+                      ),
                     ),
+                    leading: CircleAvatar(
+                        backgroundColor: Colors.blueAccent,
+                        radius: 20,
+                        child: Icon(
+                          icons[index],
+                          color: Colors.white,
+                        )),
+                    onTap: () async {
+                      Navigator.pop(context);
+                      if (index == 0) {
+                        // MaterialPageRoute(builder: (context) {
+                        //   return const HomeScreen();
+                        //});
+                        nextScreen(context, const HomeScreen());
+                      } else if (index == 1) {
+                        // MaterialPageRoute(builder: (context) {
+                        //   return const MapScreen();
+                        // });
+                        nextScreen(context, const MapScreen());
+                      } else if (index == 2) {
+                      } else if (index == 4) {
+                        //
+                        //
+                      }
+                    },
                   ),
-                  leading: CircleAvatar(
-                      backgroundColor: Colors.blueAccent,
-                      radius: 20,
-                      child: Icon(
-                        icons[index],
-                        color: Colors.white,
-                      )),
-                  onTap: () async {
-                    Navigator.pop(context);
-                    if (index == 0) {
-                      // MaterialPageRoute(builder: (context) {
-                      //   return const HomeScreen();
-                      //});
-                      nextScreen(context, const HomeScreen());
-                    } else if (index == 1) {
-                      // MaterialPageRoute(builder: (context) {
-                      //   return const MapScreen();
-                      // });
-                      nextScreen(context, const MapScreen());
-                    } else if (index == 2) {
-                    } else if (index == 4) {
-                      //
-                      //
-                    }
-                  },
                 );
               },
             ),
-            SizedBox(
-              height: 100,
-            ),
             Container(
+              alignment: Alignment.bottomCenter,
               width: 100,
-              height: 200,
+              height: 80,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                 image: NetworkImage(
                     "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.freeiconspng.com%2Fuploads%2Fworld-map-png-5.png&f=1&nofb=1"),
-                alignment: Alignment.bottomCenter,
               )),
             )
           ],
